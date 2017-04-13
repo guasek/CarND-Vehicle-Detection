@@ -16,7 +16,7 @@ Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacit
 [image1]: ./output_images/test_1_result.png
 [image2]: ./output_images/test_2_result.png
 
-###Histogram of Oriented Gradients (HOG)
+# Histogram of Oriented Gradients (HOG)
 
 I determined hog, histogram and spatial feature extracting functions' parameters in a following way:
 
@@ -102,7 +102,7 @@ def extract_hog_features(
 
 6. I've saved best performing classifier as well as feature scaler in a pickle files using scikit-learn's joblib pickler.
 
-###Sliding Window Search
+# Sliding Window Search
 
 At first I tried to implement sliding window technique with a varying size of a moving window. Hog feature extraction was run on each window separately. It again turned out to be highly inefficient. Converting entire project video would take nearly 12 hours. The performance optimization technique I found on udacity forums utilizes region of interest resizing so hog features can be computed only once for entire image. I then use subsamples of precomputed features. The scales I chosen were: 0.75, 1 and 1.5. I chose those values because I wanted windows sized (48, 48), (64, 64) and (96, 96) pixels. Then I compute the overlap to be ~0.7 using `cells_per_step = int(2 * scale)`
 
@@ -186,7 +186,7 @@ Here are some examples of results my pipeline generated:
 ![alt text][image2]
 -------------------
 
-### Video Implementation
+# Video Implementation
 
 [link to my video result](./result_video.mp4)
 
@@ -248,7 +248,7 @@ def aggregate_detections(new_detections):
 
 ---
 
-###Discussion
+# Discussion
 
 Even though I've implemented a couple of false positive rate reduction techniques, my pipeline still fails to get rid of them all. I believe it would work even worse in a different lighting or weather conditions. Most of the time I spent working on the project was in reducing false positive rate techniques then. I'd continue with some filtering techniques like Kalman Filter to improve precision of pipeline and account for occlusions like a car getting behind another car.
 Moreover a lot of attention has to be paid to optimizing performance of the pipeline. Faster, in terms of performance, language like C could be use to improve performance then. Parallelization of computations should also greatly improve performance.
